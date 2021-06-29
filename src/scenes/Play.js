@@ -24,7 +24,7 @@ class Play extends Phaser.Scene {
         //green UI background
         this.add.rectangle(0, borderUISize + borderPadding,
             game.config.width,
-            borderUISize * 2, 0x00FF00).setOrigin(0,0);
+            borderUISize * 2, 0xFFF0F5).setOrigin(0,0);
         
         // white borders
         this.add.rectangle(0, 0, game.config.width, borderUISize, 0xFFFFFF).setOrigin(0,0);
@@ -71,8 +71,8 @@ class Play extends Phaser.Scene {
         let scoreConfig = {
             fontFamily: 'Courier',
             fontSize: '28px',
-            backgroundColor: '#F3B141',
-            color: '#843605',
+            backgroundColor: '#B0C4DE',
+            color: '#00008B',
             align: 'right',
             padding: {
                 top: 5, bottom: 5
@@ -91,6 +91,21 @@ class Play extends Phaser.Scene {
             this.add.text(game.config.width / 2, game.config.height / 2 + 64, 'Press (R) to Restart or ← for Menu', scoreConfig).setOrigin(0.5);
             this.gameOver = true;
         }, null, this);
+
+        // display time
+        var counter = 60;
+        var interval = setInterval(function() {
+            counter--;
+            // Display 'counter' wherever you want to display it.
+            if (counter <= 0) {
+                clearInterval(interval);
+                $('#timer').html("<h3>Count down complete</h3>");  
+                return;
+            }else{
+                $('#time').text(counter);
+                console.log("Timer --> " + counter);
+            }
+        }, 1000);
     }
 
     update() {
