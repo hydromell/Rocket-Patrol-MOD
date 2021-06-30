@@ -8,7 +8,8 @@ class Play extends Phaser.Scene {
     }
     preload() {
         // load images/tile sprites
-        this.load.image('rocket', './assets/rocket.png');
+        this.load.image('rocket1', './assets/rocket.png');
+        this.load.image('rocket2', './assets/rocket.png');
         this.load.image('spaceship', './assets/spaceship.png');
         this.load.image('starfield', './assets/starfield.png');
         
@@ -36,13 +37,13 @@ class Play extends Phaser.Scene {
         this.p1Rocket = new Rocket(this,
             game.config.width / 2,
             game.config.height - (borderUISize + borderPadding),
-            'rocket').setOrigin(0.5, 0);
+            'rocket1').setOrigin(0.5, 0);
 
         // add Rocket (p2)
         this.p2Rocket = new Rocket(this,
             game.config.width / 2,
             game.config.height - (borderUISize + borderPadding),
-            'rocket').setOrigin(0.5, 0);
+            'rocket2').setOrigin(0.5, 0);
         
         // add spaceships (x3)
         this.ship01 = new Spaceship(this,
@@ -149,12 +150,23 @@ class Play extends Phaser.Scene {
         }
     }
 
-    checkCollision(rocket, ship) {
+    checkCollision(rocket1, ship) {
         // simple AABB checking
-        if(rocket.x < ship.x + ship.width &&
-            rocket.x + rocket.width > ship.x &&
-            rocket.y < ship.y + ship.height &&
-            rocket.height + rocket.y > ship.y) {
+        if(rocket1.x < ship.x + ship.width &&
+            rocket1.x + rocket1.width > ship.x &&
+            rocket1.y < ship.y + ship.height &&
+            rocket1.height + rocket1.y > ship.y) {
+                return true;
+        }
+        return false;
+    }
+
+    checkCollision(rocket2, ship) {
+        // simple AABB checking
+        if(rocket2.x < ship.x + ship.width &&
+            rocket2.x + rocket2.width > ship.x &&
+            rocket2.y < ship.y + ship.height &&
+            rocket2.height + rocket2.y > ship.y) {
                 return true;
         }
         return false;
