@@ -7,21 +7,25 @@ class Menu extends Phaser.Scene {
 
     }
     preload() {
+        // load images
+        this.load.image('toaster', './assets/toaster.png');
         // load audio
         this.load.audio('sfx_select', './assets/blip_select12.wav');
-        this.load.audio('sfx_explosion', './assets/explosion38.wav');
-        this.load.audio('sfx_rocket', './assets/rocket_shot.wav');
+        this.load.audio('sfx_explosion', './assets/splat.wav');
+        this.load.audio('sfx_rocket', './assets/pop2.wav');
     }
     create() {
         // this.add.text(20, 20, "Rocket Patrol Menu");
         // this.scene.start("playScene");
 
+        this.toaster = this.add.tileSprite(0, 0, 640, 480, 'toaster').setOrigin(0,0);
+
         // menu text configuration
         let menuConfig = {
             fontFamily: 'Courier',
             fontSize: '28px',
-            backgroundColor: '#F3B141',
-            color: '#843605',
+            backgroundColor: '#FFF8DC',
+            color: '#191970',
             align: 'right',
             padding: {
                 top: 5, bottom: 5
@@ -29,11 +33,14 @@ class Menu extends Phaser.Scene {
             fixedWidth: 0
         }
         // show menu text
-        this.add.text(game.config.width / 2, game.config.height / 2 - (borderUISize + borderPadding), 'ROCKET PATROL', menuConfig).setOrigin(0.5);
-        this.add.text(game.config.width / 2, game.config.height / 2, 'Use ←→ arrows to move & (F) to fire', menuConfig).setOrigin(0.5);
-        menuConfig.backgroundColor = "#00FF00";
+        this.add.text(game.config.width / 2, game.config.height / 2 - (borderUISize + borderPadding), 'BUTTER', menuConfig).setOrigin(0.5);
+        menuConfig.backgroundColor = "#EEDDE4";
         menuConfig.color = "#000";
-        this.add.text(game.config.width / 2, game.config.height / 2 + (borderUISize + borderPadding), 'Press ← of Novice or → Expert', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width / 2, game.config.height / 2, 'Use ←→ arrows to move & (L) to fire', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width / 2, game.config.height / 2 + (borderUISize + borderPadding), 'Use (A), (D) to move & (F) to fire', menuConfig).setOrigin(0.5);
+        menuConfig.backgroundColor = "#FFB6C1";
+        menuConfig.color = "#000";
+        this.add.text(game.config.width / 2, game.config.height / 2 + (borderUISize + borderPadding) + (borderUISize + borderPadding), 'Press ← of Novice or → Expert', menuConfig).setOrigin(0.5);
 
         // define keys
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);

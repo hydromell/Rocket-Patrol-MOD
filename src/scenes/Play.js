@@ -8,13 +8,14 @@ class Play extends Phaser.Scene {
     }
     preload() {
         // load images/tile sprites
-        this.load.image('rocket1', './assets/rocket.png');
-        this.load.image('rocket2', './assets/rocket.png');
-        this.load.image('spaceship', './assets/spaceship.png');
-        this.load.image('starfield', './assets/starfield.png');
+        this.load.image('rocket1', './assets/butter-32x32.png');
+        this.load.image('rocket2', './assets/butter-32x32.png');
+        this.load.image('spaceship', './assets/toast-64x64.png');
+        this.load.image('starfield', './assets/kitchen.png');
+        this.load.image('butter_toast', './assets/butter_toast-64x64.png');
         
         // load spritesheet
-        this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
+        // this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
     }
     create() {
         // this.add.text(20, 20, "Rocket Patrol Play");
@@ -64,12 +65,16 @@ class Play extends Phaser.Scene {
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+        keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+        keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+        keyL = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.L);
+        
         
         // animation config
-        this.anims.create({
-            key: 'explode',
-            frames: this.anims.generateFrameNumbers('explosion', {start: 0, end: 9, first: 0}),
-            frameRate: 30});
+        // this.anims.create({
+            // key: 'explode',
+            // frames: this.anims.generateFrameNumbers('explosion', {start: 0, end: 9, first: 0}),
+            // frameRate: 30});
         
         // initialize score
         this.p1Score = 0;
@@ -175,14 +180,18 @@ class Play extends Phaser.Scene {
     shipExplode(ship) {
         ship.alpha = 0; // temporarily hide the ship
         // create explosion sprite at ship's position
-        let boom = this.add.sprite(ship.x, ship.y, 'explosion').setOrigin(0,0);
-        boom.anims.play('explode'); // play explode animation
+        let boom = this.add.sprite(ship.x, ship.y, 'butter_toast').setOrigin(0,0);
+        // boom.anims.play('explode'); // play explode animation
         this.sound.play('sfx_explosion');
-        boom.on('animationcomplete', () => { // callback after anim completes
-            ship.reset(); // reset ship position
-            ship.alpha = 1; // make ship visible again
-            boom.destroy(); // remove explosion sprite
-        })
+        // boom.on('animationcomplete', () => { // callback after anim completes
+            // ship.reset(); // reset ship position
+            // ship.alpha = 1; // make ship visible again
+            // boom.destroy(); // remove explosion sprite
+        // })
+        
+        ship.reset(); // reset ship position
+        ship.alpha = 1; // make ship visible again
+        boom.destroy(); // remove explosion sprite
 
         // add score and repaint score display for p1
         this.p1Score += ship.points;
