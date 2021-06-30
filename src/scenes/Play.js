@@ -41,7 +41,7 @@ class Play extends Phaser.Scene {
             'rocket1').setOrigin(0.5, 0);
 
         // add Rocket (p2)
-        this.p2Rocket = new Rocket(this,
+        this.p2Rocket = new Rocket2(this,
             game.config.width / 2,
             game.config.height - (borderUISize + borderPadding),
             'rocket2').setOrigin(0.5, 0);
