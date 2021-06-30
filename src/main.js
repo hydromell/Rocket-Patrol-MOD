@@ -1,3 +1,10 @@
+/*
+Name: Melissa Liu
+Project Title: Rocket Patrol Mod
+Date: June 30, 2021
+Time Spent: ~12 hours
+*/
+
 let config = {
     type: Phaser.CANVAS,
     width: 640,
