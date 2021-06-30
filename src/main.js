@@ -3,6 +3,12 @@ Name: Melissa Liu
 Project Title: Rocket Patrol Mod
 Date: June 30, 2021
 Time Spent: ~12 hours
+
+Points Breakdown:
+30 points - Implement a simultaneous two-player mode.
+60 points - Redesign the game's artwork, UI, and sound to change its theme/aesthetic (to something other than sci-fi).
+
+Total points: 90 (+ 20 points for completing the tutorial)
 */
 
 let config = {
